@@ -6,7 +6,7 @@ function useTraverseTree() {
 
 let flag = false
   const duplidate = (name: string, tree: any): boolean => {
-    if(name === tree.name && tree.name !== "root"){
+    if(name?.trim() === tree?.name && tree?.name !== "root"){
       flag = true
     }
     tree.nodes.map((obj: any) => duplidate(name, obj))
