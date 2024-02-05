@@ -17,7 +17,7 @@ export default function App() {
   // to insert new node
   const handleInsertNode = useCallback((arg: insertNodeType) => {
     const { id, name, type } = arg
-    const finalTree = insertNode(explorerData, id, name, type)
+    const finalTree = insertNode(explorerData, id, name?.trim(), type)
     setExplorerData(finalTree)
   }, [explorerData, insertNode])
 
@@ -29,7 +29,7 @@ export default function App() {
 
   // to update node
   const handleUpdateNode = useCallback((id: number, name: string) => {
-    const finalTree = updateNode(id, name, explorerData)
+    const finalTree = updateNode(id, name?.trim(), explorerData)
     setExplorerData(finalTree)
   }, [explorerData, updateNode])
 

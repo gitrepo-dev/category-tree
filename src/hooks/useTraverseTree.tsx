@@ -6,7 +6,7 @@ function useTraverseTree() {
 
 let flag = false
   const duplidate = (name: string, tree: any): boolean => {
-    if(name?.trim() === tree?.name && tree?.name !== "root"){
+    if(name === tree?.name && tree?.name !== "root"){
       flag = true
     }
     tree.nodes.map((obj: any) => duplidate(name, obj))
@@ -30,13 +30,13 @@ let flag = false
   // add new node
   const insertNode = (tree: any, itemId: number, itemName: string, type: string) => {
 
-    const isDuplicate = duplidate(itemName, tree)
+    const isDuplicate = duplidate(itemName?.trim(), tree)
 
     if (itemName === "root" || isDuplicate) {
       alert("You are using duplicate name.")
       return tree
     } else {
-
+      flag = false
       if (tree.id === itemId && tree.type === "folder") {
         tree.nodes.unshift({
           id: new Date().getTime(),
@@ -63,6 +63,7 @@ let flag = false
       alert("You are using duplicate name.")
       return tree
     } else {
+      flag = false
       if (id === tree.id) {
         const newObj = {
           ...tree,
